@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/medium"
+        android:layout_marginRight="@dimen/medium"
+        android:layout_marginTop="8dp"
+        android:padding="@dimen/medium">
+
+        <TextView
+            android:id="@+id/task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#1A1919"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginRight="@dimen/medium"
+            android:text="This is some random lorem ipsum text to see how our task will look"/>
+
+    </RelativeLayout>
+</LinearLayout>

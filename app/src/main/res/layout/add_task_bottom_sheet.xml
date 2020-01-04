@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/medium"
+        android:layout_marginTop="@dimen/medium"
+        android:layout_marginRight="@dimen/medium"
+        android:orientation="vertical"
+        android:padding="@dimen/medium">
+
+        <EditText
+            android:id="@+id/taskEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginRight="@dimen/medium"
+            android:hint="Task" />
+
+        <!--Impact-->
+        <TextView
+            android:id="@+id/impactTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginTop="@dimen/xlarge"
+            android:layout_marginRight="@dimen/medium"
+            android:text="Select Impact 1-5"
+            android:textSize="15sp" />
+
+        <!--Effort-->
+        <SeekBar
+            android:id="@+id/impactSeekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:max="5"
+            android:progress="0" />
+
+        <TextView
+            android:id="@+id/effortTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginTop="@dimen/xlarge"
+            android:layout_marginRight="@dimen/medium"
+            android:text="Select Effort 1-5"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/effortsSeekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:max="5"
+            android:progress="0" />
+
+        <!--Profitability-->
+        <TextView
+            android:id="@+id/profitabilityTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginTop="@dimen/xlarge"
+            android:layout_marginRight="@dimen/medium"
+            android:text="Select Profitability 1-5"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/profitabilitySeekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:max="5"
+            android:progress="0" />
+
+        <!--Fit with vision-->
+        <TextView
+            android:id="@+id/fitwithvisionTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginTop="@dimen/xlarge"
+            android:layout_marginRight="@dimen/medium"
+            android:text="Select Fit with vision 1-5"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/fitwithvisionSeekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:max="5"
+            android:layout_marginBottom="@dimen/medium"
+            android:paddingBottom="@dimen/medium"
+            android:progress="0" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/addTaskBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_gradient"
+        android:gravity="center"
+        android:padding="@dimen/large">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Task"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

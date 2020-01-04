@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "173115622904",
+    "firebase_url": "https://whattodonext-d47c7.firebaseio.com",
+    "project_id": "whattodonext-d47c7",
+    "storage_bucket": "whattodonext-d47c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173115622904:android:c90a3260c945d79947020d",
+        "android_client_info": {
+          "package_name": "com.thendianappguy.whattodonext"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173115622904-g4k7mg8qragrqn63a5gl24l28q0j5teh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thendianappguy.whattodonext",
+            "certificate_hash": "ac0c10d19a0c6c05334e4691ff11fadf39edc4f9"
+          }
+        },
+        {
+          "client_id": "173115622904-jqfp2u47oop5vph5tl2jqlqsuf67e85l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw-gpgFovZys6e76YJN7GTKz_LzPRSbyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173115622904-jqfp2u47oop5vph5tl2jqlqsuf67e85l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
