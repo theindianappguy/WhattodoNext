@@ -22,6 +22,9 @@ public class SessionManagement {
     private static final String IS_LOGIN = "isloggedin";
     private static final String KEY_EMAIL = "email";
 
+
+    private static final String KEY_ITEMCOUNT = "itemcount";
+
     // Constructor
     public SessionManagement(Context context) {
         this._context = context;
@@ -31,11 +34,10 @@ public class SessionManagement {
 
     /** Create login session */
 
-    public void createLoginSession(String name, String email, String uid){
+    public void createLoginSession(String email, String uid){
 
         // Storing login value as true
         editor.putBoolean(IS_LOGIN,true);
-        editor.putString(KEY_NAME,name);
         editor.putString(KEY_EMAIL,email);
         editor.putString(KEY_UID,uid);
 
@@ -51,11 +53,25 @@ public class SessionManagement {
     }
 
     public String getUserName(){
-        return preferences.getString(KEY_NAME,"");
+        return preferences.getString(KEY_NAME,"No name");
     }
 
     public String getUserEmail(){
         return preferences.getString(KEY_EMAIL,"");
+    }
+
+    public int getItemCount(){
+        return preferences.getInt(KEY_ITEMCOUNT,0);
+    }
+
+    public void setItemCount(int itemCount){
+         editor.putInt(KEY_ITEMCOUNT,itemCount);
+         editor.commit();
+    }
+
+    public void setUserName(String name){
+        editor.putString(KEY_NAME,name);
+        editor.commit();
     }
 
     public void logoutUser() {

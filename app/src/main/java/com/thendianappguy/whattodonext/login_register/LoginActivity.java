@@ -14,13 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.thendianappguy.whattodonext.HelpingClass.SessionManagement;
 import com.thendianappguy.whattodonext.MainActivity;
 import com.thendianappguy.whattodonext.R;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     /*Variables*/
     FirebaseAuth mAuth;
     SessionManagement cookie;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,15 +146,34 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if(user!=null){
-            String nameSt = getUserNameFromUid(user.getUid());
-            cookie.createLoginSession(nameSt,user.getEmail(),user.getUid());
+            getSetUserNameFromUid();
+            cookie.createLoginSession(user.getEmail(),user.getUid());
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         }
     }
 
-    private String getUserNameFromUid(String uid) {
-        return "qwerty";
+    private void getSetUserNameFromUid() {
+
+        db.collection("UserInfo").document(Objects.requireNonNull(mAuth.getUid())).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            cookie.setUserName(documentSnapshot.getString("name"));
+                            Log.e(TAG, "onSuccess: "+cookie.getUserName());
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Not able to get Name", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void onLoginFailed() {

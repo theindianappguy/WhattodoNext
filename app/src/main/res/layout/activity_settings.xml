@@ -11,6 +11,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="40dp"
+        android:padding="4dp"
         android:layout_marginStart="@dimen/large"
         android:src="@drawable/arrow_back"/>
 

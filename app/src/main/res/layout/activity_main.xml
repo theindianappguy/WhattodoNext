@@ -21,9 +21,10 @@
             android:paddingLeft="@dimen/large">
 
             <TextView
+                android:id="@+id/greeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome"
+                android:text="Good Morning"
                 android:textSize="14sp" />
 
             <TextView
@@ -110,12 +111,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/empty"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Tasks Found Add Your First task "
+            android:text="No Tasks Found Add Your First task"
             android:textColor="@color/textColor"
             android:textSize="16sp" />
 

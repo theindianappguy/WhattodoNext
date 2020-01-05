@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SettingsActivity"></activity>
@@ -21,11 +21,11 @@
         <activity android:name=".login_register.RegisterActivity" />
         <activity android:name=".login_register.LoginActivity" />
         <activity android:name=".AddTask" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustPan"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8170876485363623~4741082172" />
+            android:value="ca-app-pub-9435786397857363~8109782866" />
     </application>
 
 </manifest>

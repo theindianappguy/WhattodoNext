@@ -97,6 +97,7 @@
                 android:layout_toRightOf="@+id/imgKey"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                android:inputType="textPassword"
                 android:layout_toLeftOf="@+id/link_forgotpassword"
                 android:background="@android:color/transparent"
                 android:paddingLeft="10dp"

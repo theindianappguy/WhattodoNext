@@ -10,7 +10,45 @@ public class TasksClass {
     int total;
     String taskId;
 
+    //Date Stuff
+    String month;
+    String date;
+    String week;
+    String time;
+
     public TasksClass(){}
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getWeek() {
+        return week;
+    }
+
+    public void setWeek(String week) {
+        this.week = week;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getTaskId() {
         return taskId;

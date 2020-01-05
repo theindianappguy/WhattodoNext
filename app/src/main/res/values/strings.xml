@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">WhatToDoNext</string>
+    <string name="app_name">WhatNext</string>
     <string name="app_desc">Spend Less Time Deciding and more in Doing it</string>
     <string name="reset_pass_message">Seems like you forgot your password. If this is true, click below to reset your password.</string>
-    <string name="banner_ad_unit_id">ca-app-pub-8170876485363623/3428000501</string>
+    <string name="banner_ad_unit_id">ca-app-pub-9435786397857363/2857456183</string>
     <string name="privacy_policy">https://docs.google.com/document/d/1WjgC4pBydel8TXUygcVaB--a-HGFdL4A1CkXrI9hkDg/edit?usp=sharing</string>
 </resources>

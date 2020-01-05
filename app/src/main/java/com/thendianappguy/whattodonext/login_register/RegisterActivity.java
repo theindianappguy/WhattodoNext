@@ -160,7 +160,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             uploadUserDataToCloud();
-            cookie.createLoginSession(nameSt,currentUser.getEmail(),currentUser.getUid());
+            cookie.setUserName(nameSt);
+            cookie.createLoginSession(currentUser.getEmail(),currentUser.getUid());
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

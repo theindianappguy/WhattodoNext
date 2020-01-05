@@ -112,6 +112,7 @@
         android:padding="@dimen/large">
 
         <TextView
+            android:id="@+id/addTaskTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Task"

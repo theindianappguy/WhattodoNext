@@ -38,13 +38,16 @@ import com.thendianappguy.whattodonext.HelpingClass.SessionManagement;
 import com.thendianappguy.whattodonext.other.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener{
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
+
+public class MainActivity extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
 
     private static final String TAG = "MainActivity";
 
-    TextView addTask;
-    ImageView profile;
+    private TextView addTask, name, greeting;
+    private ImageView profile;
 
     RecyclerView tasksList;
     RecyclerView.LayoutManager layoutManager;
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
 
     BottomSheetDialog bottomSheetDialog;
     private AdView mAdView;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +72,17 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
 
         addTask = findViewById(R.id.addTask);
         profile = findViewById(R.id.profile);
+        name = findViewById(R.id.name);
+        greeting = findViewById(R.id.greeting);
+
+        setGreeeting();
 
         cookie = new SessionManagement(this);
         tasksRef = tasksRef.document("UserTasks").collection(cookie.getUserUid());
         Log.e(TAG, "onCreate: " +cookie.getUserUid());
 
-        setUpRecyclerView();
+        String nameST = cookie.getUserName();
+        name.setText(nameST);
 
         noListingFound = findViewById(R.id.noListingFound);
         noListingFound.setVisibility(View.GONE);
@@ -82,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-       //getTaksFromCloud();
+        setUpRecyclerView();
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +109,22 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
         });
     }
 
+    private void setGreeeting() {
+
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+        if(timeOfDay >= 0 && timeOfDay < 12){
+            greeting.setText("Good Morning");
+        }else if(timeOfDay >= 12 && timeOfDay < 16){
+            greeting.setText("Good Afternoon");
+        }else if(timeOfDay >= 16 && timeOfDay < 21){
+            greeting.setText("Good Evening");
+        }else if(timeOfDay >= 21 && timeOfDay < 24){
+            greeting.setText("Good Night");
+        }
+    }
+
     private void setUpRecyclerView() {
         Query query = tasksRef.orderBy("total", Query.Direction.DESCENDING);
 
@@ -113,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
         tasksList.setLayoutManager(layoutManager);
         tasksList.setAdapter(mAdapter);
 
+        checkAndSetEmptyView();
+
+
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
@@ -124,14 +152,32 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 mAdapter.deleteItem(viewHolder.getAdapterPosition());
+                mAdapter.onDataChanged();
+                checkAndSetEmptyView();
             }
         }).attachToRecyclerView(tasksList);
 
     }
 
+    public void checkAndSetEmptyView() {
+        SessionManagement sessionManagement = new SessionManagement(MainActivity.this);
+        Log.e(TAG, "checkAndSetEmptyView: "+sessionManagement.getItemCount());
+        if(sessionManagement.getItemCount() == 0){
+            noListingFound.setVisibility(View.VISIBLE);
+        }else{
+            noListingFound.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mAdapter.startListening();
     }
 
@@ -142,8 +188,10 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
     }
 
     private void showAddTaskBottomSheet() {
-        bottomSheetDialog = new BottomSheetDialog();
+        bottomSheetDialog = new BottomSheetDialog(MainActivity.this, "", 0, 0,
+                0,0,"",true);
         bottomSheetDialog.show(getSupportFragmentManager(),"addTaskFragment");
+
     }
 
     /*private void getTaksFromCloud() {
@@ -183,5 +231,15 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
         if(text.equals("close")){
             bottomSheetDialog.dismiss();
         }
+    }
+
+    public void showBottomSheetWithPrefilledDetails(String task, int impact, int effort,
+                                                    int profitability,int fitwithvision,String taskId) {
+
+        bottomSheetDialog = new BottomSheetDialog(MainActivity.this, task, impact, effort,
+        profitability,fitwithvision,taskId,false);
+
+        bottomSheetDialog.show(getSupportFragmentManager(),"addTaskFragment");
+        Log.e(TAG, "showBottomSheetWithPrefilledDetails: "+taskId );
     }
 }
